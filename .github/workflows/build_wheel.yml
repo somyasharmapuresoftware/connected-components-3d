@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        arch: [x86_64]        
+        arch: [auto]        
         os: [ubuntu-20.04, windows-2019, macos-latest]
         include:
           - os: ubuntu-20.04
