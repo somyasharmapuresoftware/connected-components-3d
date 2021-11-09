@@ -22,7 +22,7 @@ jobs:
       - name: Set up QEMU
         id: qemu
         uses: docker/setup-qemu-action@v1
-        if:  ${{matrix.arch}} == 'aarch64', ${{matrix.os}} == 'ubuntu-20.04'
+        if:  ${{matrix.arch}} == 'aarch64' and ${{matrix.os}} == 'ubuntu-20.04'
 
       - name: Build wheels
         uses: joerick/cibuildwheel@v1.10.0
@@ -31,6 +31,7 @@ jobs:
           CIBW_ARCHS_LINUX: ${{matrix.arch}}
           CIBW_BUILD: "cp36-* cp37-* cp38-* cp39-*"
           CIBW_BEFORE_BUILD: pip install oldest-supported-numpy
+          CIBW_ENVIRONMENT: "DISABLE_AVX2='TRUE'"
 
       - uses: actions/upload-artifact@v2
         with:
