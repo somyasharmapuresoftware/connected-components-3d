@@ -1,9 +1,7 @@
 name: Build Wheels
 
-on:
-  push:
-    tags:
-      - '*'
+on: [push, pull_request]
+
 env:
   CIBW_SKIP: cp27-* cp33-* cp34-* cp35-* pp27* pp36* pp37*
 
